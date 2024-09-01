@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar Archivo</title>
+    <style>
+       body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Tono azul claro */
+            color: #01458e; /* Azul oscuro */
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px; /* Ajusta el tamaño del logo según tus necesidades */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .name {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .download-btn {
+            background-color: #01458e; /* Azul oscuro */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .download-btn:hover {
+            background-color: #0369c9; /* Azul un poco más claro */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="/public/logo.png" alt="Logo" class="logo" width="100"> <!-- Reemplaza "logo.png" con la ruta de tu logo -->
+        <div class="name" id="fileName">Nombre del Archivo</div>
+        <button class="download-btn" id="downloadBtn">Descargar</button>
+    </div>
+
+    <script>
+        // Función para obtener los parámetros de la URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtén el nombre del archivo del parámetro de consulta 'file'
+            var fileName = getQueryParam("file");
+
+            if (fileName) {
+                // Actualiza el texto de nombre del archivo
+                document.getElementById("fileName").textContent = fileName;
+
+                // Configura el enlace de descarga
+                document.getElementById("downloadBtn").addEventListener("click", function() {
+                    var newUrl = "https://bim-data-storage.s3.amazonaws.com/" + fileName;
+                    window.location.href = newUrl;
+                });
+            } else {
+                document.getElementById("fileName").textContent = "Archivo no especificado";
+                document.getElementById("downloadBtn").disabled = true;
+            }
+        });
+    </script>
+
+</body>
+</html>
