@@ -7,21 +7,23 @@
     <style>
        body {
             margin: 0;
-            height: 100vh;
+            height: 100vh; /* Establece la altura del viewport */
             display: flex;
+            flex-direction: column; /* Coloca el logo y el botón en una columna */
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
             background-color: #f0f8ff; /* Tono azul claro */
             color: #01458e; /* Azul oscuro */
-            position: relative;
+            overflow: hidden; /* Evita el scroll */
+            box-sizing: border-box; /* Incluye padding y border en el tamaño total del elemento */
         }
 
         .logo {
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 150px; /* Ajusta el tamaño del logo según tus necesidades */
+            width: 120px; /* Ajusta el tamaño del logo según tus necesidades */
         }
 
         .container {
@@ -51,8 +53,12 @@
 </head>
 <body>
 
+    <div class="logo-container">
+        <a href="https://www.cesel.com.pe" target="_self">
+            <img src="public/logo.png" alt="Logo" class="logo"> <!-- Reemplaza "logo.png" con la ruta de tu logo -->
+        </a>
+    </div>
     <div class="container">
-        <img src="/public/logo.png" alt="Logo" class="logo" width="100"> <!-- Reemplaza "logo.png" con la ruta de tu logo -->
         <div class="name" id="fileName">Nombre del Archivo</div>
         <button class="download-btn" id="downloadBtn">Descargar</button>
     </div>
