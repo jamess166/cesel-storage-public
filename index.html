@@ -73,14 +73,15 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Obtén el nombre del archivo del parámetro de consulta 'file'
             var fileName = getQueryParam("file");
+            var proj = getQueryParam("proj");
 
             if (fileName) {
                 // Actualiza el texto de nombre del archivo
-                document.getElementById("fileName").textContent = fileName;
+                document.getElementById("fileName").textContent = proj;
 
                 // Configura el enlace de descarga
                 document.getElementById("downloadBtn").addEventListener("click", function() {
-                    var newUrl = "https://bim-data-storage.s3.amazonaws.com/" + fileName;
+                    var newUrl = `https://drive.usercontent.google.com/download?id=${fileName}&export=download`;
                     window.location.href = newUrl;
                 });
             } else {
